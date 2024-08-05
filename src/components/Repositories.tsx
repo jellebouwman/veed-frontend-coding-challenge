@@ -1,28 +1,25 @@
 'use client'
 
-import { fetchNewAndTrendingRepositories } from '../entities/repository/api';
-import {
-  useQuery
-} from '@tanstack/react-query'
-import RepositoryCard from './RepositoryCard';
-import { useStickyState } from '../hooks/useStickyState';
+import { useQuery } from '@tanstack/react-query'
+import { fetchNewAndTrendingRepositories } from '../entities/repository/api'
+import { useStickyState } from '../hooks/useStickyState'
+import RepositoryCard from './RepositoryCard'
 
 function LoadingRepositories() {
   return (
-    <div className="px-4 py-8 bg-gray-200 animate-pulse rounded-lg shadow-md">
-      <h2 className="text-lg text-center font-semibold text-gray-800">Loading repositories...</h2>
+    <div className="animate-pulse rounded-lg bg-gray-200 px-4 py-8 shadow-md">
+      <h2 className="text-center text-lg font-semibold text-gray-800">Loading repositories...</h2>
     </div>
   )
 }
 
 function NoResults() {
   return (
-    <div className="px-4 py-8 bg-gray-200 rounded-lg shadow-md">
-      <h2 className="text-lg text-center font-semibold text-gray-800">No results</h2>
+    <div className="rounded-lg bg-gray-200 px-4 py-8 shadow-md">
+      <h2 className="text-center text-lg font-semibold text-gray-800">No results</h2>
     </div>
   )
 }
-
 
 function Repositories() {
   const { data, error, isLoading } = useQuery({ queryFn: fetchNewAndTrendingRepositories, queryKey: ['repositories'] })
@@ -57,10 +54,9 @@ function Repositories() {
   const filteredData = showOnlyLiked ? data.filter((repository) => likedRepositoriesSet.has(repository.id)) : data
 
   return (
-    <div className='flex flex-col gap-8'>
-      <label className='flex items-center gap-8  self-end'>
+    <div className="flex flex-col gap-8">
+      <label className="flex items-center gap-8 self-end">
         Show only liked repositories
-
         <input
           name="showOnlyLiked"
           checked={showOnlyLiked}
@@ -68,17 +64,22 @@ function Repositories() {
           type="checkbox"
         />
       </label>
-      {
-        filteredData.length === 0 ? <NoResults /> :
-          (
-            <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-              {filteredData.map((repository) => (
-                <RepositoryCard key={repository.id} isLiked={likedRepositoriesSet.has(repository.id)} repository={repository} onToggleLike={toggleLikeRepository} />
-              ))}
-            </div>
-          )}
+      {filteredData.length === 0 ? (
+        <NoResults />
+      ) : (
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          {filteredData.map((repository) => (
+            <RepositoryCard
+              key={repository.id}
+              isLiked={likedRepositoriesSet.has(repository.id)}
+              repository={repository}
+              onToggleLike={toggleLikeRepository}
+            />
+          ))}
+        </div>
+      )}
     </div>
-  );
+  )
 }
 
-export default Repositories;
+export default Repositories

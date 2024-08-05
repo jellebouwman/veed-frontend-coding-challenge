@@ -9,12 +9,10 @@ export function useStickyState<T>(defaultValue: T, key: string): [T, (value: T) 
     if (typeof window === 'undefined') {
       return defaultValue
     } else {
-
       const stickyValue = window.localStorage.getItem(key)
 
       return stickyValue !== null ? (JSON.parse(stickyValue) as T) : defaultValue
     }
-
   })
 
   useEffect(() => {

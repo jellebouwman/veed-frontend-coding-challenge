@@ -1,4 +1,4 @@
-import z from 'zod';
+import z from 'zod'
 
 export async function fetchFromApi<T>(url: string, schema: z.ZodType<T>, fetchOptions: RequestInit = {}): Promise<T> {
   const finalUrl = new URL(url).toString()
@@ -8,7 +8,6 @@ export async function fetchFromApi<T>(url: string, schema: z.ZodType<T>, fetchOp
     const data = await response.json()
 
     return schema.parse(data)
-
   } catch (error) {
     if (error instanceof z.ZodError) {
       throw new Error(`Error parsing API response: ${error}`)

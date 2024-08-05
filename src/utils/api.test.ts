@@ -1,9 +1,9 @@
-import { expect, test, vi, describe } from 'vitest'
-import { fetchFromApi } from './api'
+import { describe, expect, test, vi } from 'vitest'
 import { z } from 'zod'
+import { fetchFromApi } from './api'
 
 describe('fetchFromApi', () => {
-  const fetchSpy = vi.spyOn(global, 'fetch');
+  const fetchSpy = vi.spyOn(global, 'fetch')
 
   test('it should fetch and parse the response with the supplied schema', async () => {
     fetchSpy.mockResolvedValue({
@@ -29,6 +29,8 @@ describe('fetchFromApi', () => {
       name: z.string(),
     })
 
-    expect(async () => await fetchFromApi('https://someurl.com', schema)).rejects.toThrowError("Error parsing API response:")
+    expect(async () => await fetchFromApi('https://someurl.com', schema)).rejects.toThrowError(
+      'Error parsing API response:'
+    )
   })
 })

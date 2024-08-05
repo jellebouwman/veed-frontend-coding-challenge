@@ -1,6 +1,6 @@
-import { after, before } from "node:test";
-import { getLastSevenDaysString } from "./date";
-import { expect, test, vi, describe } from 'vitest'
+import { after, before } from 'node:test'
+import { describe, expect, test, vi } from 'vitest'
+import { getLastSevenDaysString } from './date'
 
 describe('getLastSevenDaysString', () => {
   test('it should return a string in the format yyyy-MM-dd', () => {

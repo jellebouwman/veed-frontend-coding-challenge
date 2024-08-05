@@ -1,7 +1,6 @@
-import { expect, test, describe } from 'vitest'
 import { renderHook } from '@testing-library/react-hooks'
+import { describe, expect, test } from 'vitest'
 import { useStickyState } from './useStickyState'
-
 
 describe('useStickyState', () => {
   test('it should return the default value if no value is found in localStorage', () => {
@@ -24,4 +23,3 @@ describe('useStickyState', () => {
     expect(window.localStorage.getItem('test')).toEqual('1')
   })
 })
-

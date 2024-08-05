@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import { z } from 'zod'
 
 export const ownerSchema = z.object({
   login: z.string(),
@@ -19,4 +19,4 @@ export const ownerSchema = z.object({
   received_events_url: z.string().url(),
   type: z.string(),
   site_admin: z.boolean(),
-});
+})

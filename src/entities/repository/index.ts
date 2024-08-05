@@ -1,5 +1,5 @@
-import { z } from "zod";
-import { ownerSchema } from "../owner";
+import { z } from 'zod'
+import { ownerSchema } from '../owner'
 
 // This is huge, but it's just a schema for a GitHub repository object.
 // We could also create a schema by picking the fields we need,
@@ -85,6 +85,6 @@ export const repositorySchema = z.object({
   watchers_count: z.number(),
   watchers: z.number(),
   web_commit_signoff_required: z.boolean(),
-});
+})
 
-export type Repository = z.infer<typeof repositorySchema>;
+export type Repository = z.infer<typeof repositorySchema>

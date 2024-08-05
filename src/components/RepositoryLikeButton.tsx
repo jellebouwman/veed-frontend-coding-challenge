@@ -15,14 +15,12 @@ function RepositoryLikeButton({
   isLiked,
   repositoryId,
   repositoryName,
-  toggleLike
+  toggleLike,
 }: RepositoryLikeButtonProps) {
   const classNames = twMerge(`h-6 w-6 text-yellow-500`, className)
 
   return (
-    <button aria-label={
-      `${isLiked ? 'Unlike' : 'Like'} ${repositoryName}`
-    } onClick={() => toggleLike(repositoryId)}>
+    <button aria-label={`${isLiked ? 'Unlike' : 'Like'} ${repositoryName}`} onClick={() => toggleLike(repositoryId)}>
       {isLiked ? <SolidStarIcon className={classNames} /> : <OutlineStarIcon className={classNames} />}
     </button>
   )
