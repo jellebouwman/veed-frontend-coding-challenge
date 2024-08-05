@@ -1,8 +1,9 @@
 import { fetchFromApi } from "@/utils/api"
 import { z } from "zod"
 import { Repository, repositorySchema } from "."
+import { getLastSevenDaysString } from "@/utils/date"
 
-const url = "https://api.github.com/search/repositories?q=created:%3E2017-01-10&sort=stars&order=desc"
+const BASE_URL = "https://api.github.com/search/repositories"
 
 const fetchRepositoriesSchema = z.object({
   total_count: z.number(),
@@ -11,8 +12,13 @@ const fetchRepositoriesSchema = z.object({
 })
 
 export async function fetchNewAndTrendingRepositories(): Promise<Repository[]> {
+  const url = new URL(BASE_URL)
+  url.searchParams.append("q", `created:>${getLastSevenDaysString()}`)
+  url.searchParams.append("sort", "stars")
+  url.searchParams.append("order", "desc")
+
   try {
-    const response = await fetchFromApi(url, fetchRepositoriesSchema)
+    const response = await fetchFromApi(url.toString(), fetchRepositoriesSchema)
 
     return response.items
   } catch (error) {
