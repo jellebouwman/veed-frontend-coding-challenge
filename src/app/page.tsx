@@ -1,4 +1,4 @@
-import Repositories from "@/components/Repositories";
+import Repositories from "../components/Repositories";
 
 export default function Home() {
   return (

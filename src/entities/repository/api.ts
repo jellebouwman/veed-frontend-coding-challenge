@@ -1,7 +1,7 @@
-import { fetchFromApi } from "@/utils/api"
+import { fetchFromApi } from "../../utils/api"
 import { z } from "zod"
 import { Repository, repositorySchema } from "."
-import { getLastSevenDaysString } from "@/utils/date"
+import { getLastSevenDaysString } from "../../utils/date"
 
 const BASE_URL = "https://api.github.com/search/repositories"
 
