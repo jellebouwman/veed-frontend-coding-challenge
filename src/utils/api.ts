@@ -11,8 +11,7 @@ export async function fetchFromApi<T>(url: string, schema: z.ZodType<T>, fetchOp
 
   } catch (error) {
     if (error instanceof z.ZodError) {
-      console.log({ error })
-      throw new Error(`Error parsing API response: ${error.errors}`)
+      throw new Error(`Error parsing API response: ${error}`)
     } else if (error instanceof Error) {
       console.log({ error })
       throw new Error(`Error fetching from API: ${error.message}`)
