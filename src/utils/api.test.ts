@@ -1,4 +1,4 @@
-import { expect, test, it, vi, describe } from 'vitest'
+import { expect, test, vi, describe } from 'vitest'
 import { fetchFromApi } from './api'
 import { z } from 'zod'
 
